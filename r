@@ -1,2 +1,2 @@
 #!/bin/bash
-wc -l R \n \n 
+echo -e "R\n" > r

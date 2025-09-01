@@ -1,5 +1,7 @@
 #!/bin/bash
-if [ -z "$HERI_ID" ]; then
-echo "error : HERO_ID is not set."
-if curl -s https://platform.zone01.gr/assets/superhero/all.json \
-| jq -r ".[] | select(.id == $HERO_ID) | .relatives"
+if [ -z "$HERO_ID" ]; then
+  echo "Error: HERO_ID is not set."
+  exit 1
+fi
+curl -s https://platform.zone01.gr/assets/superhero/all.json \
+  | jq -r ".[] | select(.id == $HERO_ID) | .relatives"

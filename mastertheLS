@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -tpu | paste -sd
+ls -1pU --time=atime --sort=time | grep -v '^\.' | paste -sd,

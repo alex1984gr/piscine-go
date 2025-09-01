@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Apu | paste -sd
+ls -tpu | paste -sd

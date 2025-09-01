@@ -1,2 +1,2 @@
 #!/bin/bash
-wc -l R
+wc -l R \n \n 

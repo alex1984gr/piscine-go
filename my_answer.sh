@@ -1,2 +1,2 @@
 #!/bin/bash
-head -n 3 instructions | tail -n 1
+head -n 2 instructions | tail -n 1

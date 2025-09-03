@@ -8,34 +8,25 @@ func PrintCombN(n int) {
 	}
 
 	comb := make([]int, n)
-	generateComb(0, 0, n, comb)
+	generateComb(0, 0, n, comb, true)
 	z01.PrintRune('\n')
 }
 
-func generateComb(pos int, start int, n int, comb []int) {
+func generateComb(pos int, start int, n int, comb []int, first bool) {
 	if pos == n {
-		for i := 0; i < n; i++ {
-			z01.PrintRune(rune('0' + comb[i]))
-		}
-
-		if !isLast(comb, n) {
+		if !first {
 			z01.PrintRune(',')
 			z01.PrintRune(' ')
+		}
+		for i := 0; i < n; i++ {
+			z01.PrintRune(rune('0' + comb[i]))
 		}
 		return
 	}
 
 	for i := start; i <= 9-(n-pos); i++ {
 		comb[pos] = i
-		generateComb(pos+1, i+1, n, comb)
+		generateComb(pos+1, i+1, n, comb, first && pos == 0 && i == 0)
+		first = false
 	}
-}
-
-func isLast(comb []int, n int) bool {
-	for i := 0; i < n; i++ {
-		if comb[i] != 10-n+i {
-			return false
-		}
-	}
-	return true
 }

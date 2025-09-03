@@ -7,31 +7,31 @@ func PrintCombN(n int) {
 		return
 	}
 
-	comb := make([]int, n)
-	generateComb(0, 0, n, comb)
+	var comb []int
+	printCombs(n, 0, comb)
 	z01.PrintRune('\n')
 }
 
-func generateComb(pos int, start int, n int, comb []int) {
-	if pos == n {
-		for i := 0; i < n; i++ {
-			z01.PrintRune(rune('0' + comb[i]))
+func printCombs(n, start int, comb []int) {
+	if len(comb) == n {
+		for _, d := range comb {
+			z01.PrintRune(rune(d + '0'))
 		}
-		if !isLast(comb, n) {
+		if !isLastComb(n, comb) {
 			z01.PrintRune(',')
 			z01.PrintRune(' ')
 		}
 		return
 	}
-	for i := start; i <= 9-(n-pos); i++ {
-		comb[pos] = i
-		generateComb(pos+1, i+1, n, comb)
+
+	for i := start; i <= 10-(n-len(comb)); i++ {
+		printCombs(n, i+1, append(comb, i))
 	}
 }
 
-func isLast(comb []int, n int) bool {
+func isLastComb(n int, comb []int) bool {
 	for i := 0; i < n; i++ {
-		if comb[i] != 10-n+i {
+		if comb[i] != i+10-n {
 			return false
 		}
 	}

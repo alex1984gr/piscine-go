@@ -7,9 +7,10 @@ func PrintNbr(n int) {
 		z01.PrintRune('0')
 		return
 	}
-}
+
 	if n < 0 {
 		z01.PrintRune('-')
+		// Το μικρότερο int (ανάλογα την πλατφόρμα, εδώ για 64-bit int)
 		if n == -9223372036854775808 {
 			str := "9223372036854775808"
 			for _, r := range str {
@@ -18,6 +19,8 @@ func PrintNbr(n int) {
 			return
 		}
 		n = -n
+	}
+
 	if n/10 != 0 {
 		PrintNbr(n / 10)
 	}

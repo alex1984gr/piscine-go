@@ -17,25 +17,14 @@ func generateComb(pos int, start int, n int, comb []int) {
 		for i := 0; i < n; i++ {
 			z01.PrintRune(rune('0' + comb[i]))
 		}
-
 		if !isLast(comb, n) {
 			z01.PrintRune(',')
 			z01.PrintRune(' ')
 		}
 		return
 	}
-
 	for i := start; i <= 9-(n-pos); i++ {
 		comb[pos] = i
 		generateComb(pos+1, i+1, n, comb)
 	}
-}
-
-func isLast(comb []int, n int) bool {
-	for i := 0; i < n; i++ {
-		if comb[i] != 10-n+i {
-			return false
-		}
-	}
-	return true
 }

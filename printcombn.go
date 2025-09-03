@@ -28,3 +28,12 @@ func generateComb(pos int, start int, n int, comb []int) {
 		generateComb(pos+1, i+1, n, comb)
 	}
 }
+
+func isLast(comb []int, n int) bool {
+	for i := 0; i < n; i++ {
+		if comb[i] != 10-n+i {
+			return false
+		}
+	}
+	return true
+}

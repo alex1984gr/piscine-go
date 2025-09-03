@@ -18,7 +18,7 @@ func generateComb(pos int, start int, n int, comb []int) {
 			z01.PrintRune(rune('0' + comb[i]))
 		}
 
-		if !(comb[0] == 10-n && comb[n-1] == 9) {
+		if !isLast(comb, n) {
 			z01.PrintRune(',')
 			z01.PrintRune(' ')
 		}
@@ -29,4 +29,13 @@ func generateComb(pos int, start int, n int, comb []int) {
 		comb[pos] = i
 		generateComb(pos+1, i+1, n, comb)
 	}
+}
+
+func isLast(comb []int, n int) bool {
+	for i := 0; i < n; i++ {
+		if comb[i] != 10-n+i {
+			return false
+		}
+	}
+	return true
 }

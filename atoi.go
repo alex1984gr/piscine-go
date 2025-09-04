@@ -7,8 +7,11 @@ func Atoi(s string) int {
 
 	neg := false
 	start := 0
+
 	if s[0] == '-' {
 		neg = true
+		start = 1
+	} else if s[0] == '+' {
 		start = 1
 	}
 

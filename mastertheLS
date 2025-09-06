@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -1pU --time=atime --sort=time | grep -v '^\.' | paste -sd,

@@ -1,7 +1,7 @@
 package student
 
 func IterativeFactorial(nb int) int {
-	if nb < 0 || nb > 5 {
+	if nb < 0 {
 		return 0
 	}
 	result := 1

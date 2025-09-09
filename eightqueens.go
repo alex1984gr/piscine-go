@@ -1,5 +1,7 @@
 package student
 
+import "github.com/01-edu/z01"
+
 func EightQueens() {
 	var board [8]int
 	solve(0, &board)
@@ -8,9 +10,9 @@ func EightQueens() {
 func solve(j int, board *[8]int) {
 	if j == 8 {
 		for j := 0; j < 8; j++ {
-			print(board[j] + 1)
+			z01.PrintRune(1)
 		}
-		println()
+		z01.PrintRune(' ')
 		return
 	}
 	for i := 0; i < 8; i++ {

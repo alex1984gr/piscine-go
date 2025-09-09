@@ -1,6 +1,8 @@
 package student
 
 func FirstRune(s string) rune {
-	runes := []rune(s)
-	return runes[0]
+	for _, r := range s {
+		return r
+	}
+	return 0
 }

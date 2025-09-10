@@ -17,6 +17,7 @@ func main() {
 	}
 	name := program[lastSlash+1:]
 	for _, c := range name {
-		z01.PrintRune(c)
+		z01.PrintRune(rune(c))
 	}
+	z01.PrintRune('\n')
 }

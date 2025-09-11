@@ -1,0 +1,5 @@
+{
+    "program" : "main.go",
+    "variables": ["runse", "string","index", "i","x","y","j","args","n","slise","byte","result","answer","col","row"],
+    "breakpoint" : [5, 10, 15, 20, 25, 30, 35, 40, 45],
+}

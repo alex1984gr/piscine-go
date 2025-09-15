@@ -13,7 +13,7 @@ func main() {
 		return
 	}
 	if len(args) > 1 {
-		fmt.Print("To many arguments")
+		fmt.Print("Too many arguments")
 		return
 	}
 	file, err := os.Open(args[0])

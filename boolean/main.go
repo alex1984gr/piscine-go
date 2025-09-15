@@ -8,10 +8,12 @@ import (
 
 type boolean int
 
-const yes boolean = 1
-const no boolean = 0
-const EvenMsg = "I have an even number of arguments"
-const OddMsg = "I have an odd number of arguments"
+const (
+	yes     boolean = 1
+	no      boolean = 0
+	EvenMsg         = "I have an even number of arguments"
+	OddMsg          = "I have an odd number of arguments"
+)
 
 func printStr(s string) {
 	for _, r := range s {

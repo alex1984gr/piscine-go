@@ -2,7 +2,7 @@ package student
 
 func Any(f func(string) bool, a []string) bool {
 	for _, s := range a {
-		if f(s) == true {
+		if f(s) {
 			return true
 		}
 	}

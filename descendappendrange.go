@@ -1,10 +1,11 @@
 package student
 
 func DescendAppendRange(max, min int) []int {
-	var result []int
 	if max <= min {
-		return result
+		return []int{}
 	}
+
+	result := []int{}
 	for i := max; i > min; i-- {
 		result = append(result, i)
 	}

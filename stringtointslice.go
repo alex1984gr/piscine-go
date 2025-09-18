@@ -1,6 +1,9 @@
 package student
 
 func StringToIntSlice(str string) []int {
+	if str == "" {
+		return nil
+	}
 	result := []int{}
 	for _, r := range str {
 		result = append(result, int(r))

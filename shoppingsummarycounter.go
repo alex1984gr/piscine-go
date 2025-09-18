@@ -8,11 +8,11 @@ func ShoppingSummaryCounter(str string) map[string]int {
 		if ch != ' ' {
 			word += string(ch)
 		} else if word != "" {
-			summary[word] = summary[word] + 1
+			summary[word]++
 			word = ""
 		}
 		if word != "" {
-			summary[word] = summary[word] + 1
+			summary[word]++
 		}
 	}
 	return summary

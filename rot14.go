@@ -1,16 +1,15 @@
 package student
 
-import "github.com/01-edu/z01"
-
-func Rot14(s string) {
+func Rot14(s string) string {
+	result := ""
 	for _, r := range s {
 		if r >= 'a' && r <= 'z' {
-			z01.PrintRune(((r-'a'+14)%26 + 'a'))
+			result += string(((r-'a'+14)%26 + 'a'))
 		} else if r >= 'A' && r <= 'Z' {
-			z01.PrintRune(((r-'A'+14)%26 + 'A'))
+			result += string(((r-'A'+14)%26 + 'A'))
 		} else {
-			z01.PrintRune(r)
+			result += string(r)
 		}
 	}
-	z01.PrintRune('\n')
+	return result
 }

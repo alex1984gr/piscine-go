@@ -1,12 +1,24 @@
 package student
 
-import "strings"
-
 func ShoppingSummaryCounter(str string) map[string]int {
 	result := make(map[string]int)
-	words := strings.Fields(str) // σπάει το string σε slice με βάση τα κενά
+	word := ""
 
-	for _, word := range words {
+	for i := 0; i < len(str); i++ {
+		c := str[i]
+
+		if c == ' ' {
+			if word != "" {
+				result[word]++
+				word = ""
+			}
+		} else {
+			word += string(c)
+		}
+	}
+
+	// το τελευταίο word αν υπάρχει
+	if word != "" {
 		result[word]++
 	}
 

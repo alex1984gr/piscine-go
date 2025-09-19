@@ -1,21 +1,19 @@
 package student
 
-import "github.com/01-edu/z01"
-
 func printStr(s string) {
 	for i := 0; i < len(s); i++ {
-		z01.PrintRune(rune(s[i]))
+		PrintRune(rune(s[i])) // Χωρίς z01.
 	}
 }
 
 func printNum(n int) {
 	if n == 0 {
-		z01.PrintRune('0')
+		PrintRune('0')
 		return
 	}
 
 	if n < 0 {
-		z01.PrintRune('-')
+		PrintRune('-')
 		n = -n
 	}
 
@@ -26,6 +24,6 @@ func printNum(n int) {
 	}
 
 	for i := len(digits) - 1; i >= 0; i-- {
-		z01.PrintRune(digits[i])
+		PrintRune(digits[i])
 	}
 }

@@ -6,27 +6,27 @@ func LoafOfBread(str string) string {
 	if len(str) < 5 {
 		return "Invalid Output\n"
 	}
-
+	result := ""
 	count := 0
 	skipNext := false
-
 	for _, ch := range str {
+		if ch == ' ' {
+			continue
+		}
 		if skipNext {
 			skipNext = false
 			continue
 		}
-
-		if ch != ' ' {
-			z01.PrintRune(ch)
-			count++
-		}
-
+		result += string(ch)
+		count++
 		if count == 5 {
 			count = 0
 			skipNext = true
 		}
 	}
-
-	z01.PrintRune('\n')
-	return ""
+	result += "\n"
+	for _, r := range result {
+		z01.PrintRune(r)
+	}
+	return result
 }

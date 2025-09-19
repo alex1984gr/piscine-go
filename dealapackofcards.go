@@ -2,87 +2,28 @@ package student
 
 import "github.com/01-edu/z01"
 
-func DealAPackOfCards() {
-	// Player 1
-	z01.PrintRune('P')
-	z01.PrintRune('l')
-	z01.PrintRune('a')
-	z01.PrintRune('y')
-	z01.PrintRune('e')
-	z01.PrintRune('r')
-	z01.PrintRune(' ')
-	z01.PrintRune('1')
-	z01.PrintRune(':')
-	z01.PrintRune(' ')
-	z01.PrintRune('1')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('2')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('3')
-	z01.PrintRune('\n')
+func DealAPackOfCards(deck []int) {
+	players := 4
+	cardsPerPlayer := len(deck) / players
 
-	// Player 2
-	z01.PrintRune('P')
-	z01.PrintRune('l')
-	z01.PrintRune('a')
-	z01.PrintRune('y')
-	z01.PrintRune('e')
-	z01.PrintRune('r')
-	z01.PrintRune(' ')
-	z01.PrintRune('2')
-	z01.PrintRune(':')
-	z01.PrintRune(' ')
-	z01.PrintRune('4')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('5')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('6')
-	z01.PrintRune('\n')
-
-	// Player 3
-	z01.PrintRune('P')
-	z01.PrintRune('l')
-	z01.PrintRune('a')
-	z01.PrintRune('y')
-	z01.PrintRune('e')
-	z01.PrintRune('r')
-	z01.PrintRune(' ')
-	z01.PrintRune('3')
-	z01.PrintRune(':')
-	z01.PrintRune(' ')
-	z01.PrintRune('7')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('8')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('9')
-	z01.PrintRune('\n')
-
-	// Player 4
-	z01.PrintRune('P')
-	z01.PrintRune('l')
-	z01.PrintRune('a')
-	z01.PrintRune('y')
-	z01.PrintRune('e')
-	z01.PrintRune('r')
-	z01.PrintRune(' ')
-	z01.PrintRune('4')
-	z01.PrintRune(':')
-	z01.PrintRune(' ')
-	z01.PrintRune('1')
-	z01.PrintRune('0')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('1')
-	z01.PrintRune('1')
-	z01.PrintRune(',')
-	z01.PrintRune(' ')
-	z01.PrintRune('1')
-	z01.PrintRune('2')
-	z01.PrintRune('\n')
+	for i := 0; i < players; i++ {
+		playerHeader := "Player " + string('1'+i) + ": "
+		for _, r := range playerHeader {
+			z01.PrintRune(r)
+		}
+		for j := 0; j < cardsPerPlayer; j++ {
+			card := deck[i*cardsPerPlayer+j]
+			if card >= 10 {
+				z01.PrintRune(rune('0' + card/10))
+				z01.PrintRune(rune('0' + card%10))
+			} else {
+				z01.PrintRune(rune('0' + card))
+			}
+			if j != cardsPerPlayer-1 {
+				z01.PrintRune(',')
+				z01.PrintRune(' ')
+			}
+		}
+		z01.PrintRune('\n')
+	}
 }

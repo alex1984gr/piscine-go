@@ -1,21 +1,13 @@
 package student
 
+import "strings"
+
 func ShoppingSummaryCounter(str string) map[string]int {
 	result := make(map[string]int)
-	word := ""
+	items := strings.Split(str, " ")
 
-	for _, r := range str {
-		if r == ' ' {
-			if word != "" {
-				result[word]++
-				word = ""
-			}
-		} else {
-			word += string(r)
-		}
-	}
-	if word != "" {
-		result[word]++
+	for _, item := range items {
+		result[item]++
 	}
 
 	return result

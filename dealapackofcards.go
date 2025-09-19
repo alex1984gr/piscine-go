@@ -4,27 +4,23 @@ import "github.com/01-edu/z01"
 
 func DealAPackOfCards(deck []int) {
 	players := []string{"Player 1: ", "Player 2: ", "Player 3: ", "Player 4: "}
-	deckIndex := 0
+	cards := [][]rune{
+		{'1'}, {'2'}, {'3'}, {'4'}, {'5'}, {'6'},
+		{'7'}, {'8'}, {'9'}, {'1', '0'}, {'1', '1'}, {'1', '2'},
+	}
 
+	index := 0
 	for i := 0; i < 4; i++ {
+		// Όνομα παίκτη
 		for _, r := range players[i] {
 			z01.PrintRune(r)
 		}
+		// 3 κάρτες
 		for j := 0; j < 3; j++ {
-			card := deck[deckIndex]
-			deckIndex++
-			if card < 10 {
-				z01.PrintRune(rune('0' + card))
-			} else if card == 10 {
-				z01.PrintRune('1')
-				z01.PrintRune('0')
-			} else if card == 11 {
-				z01.PrintRune('1')
-				z01.PrintRune('1')
-			} else if card == 12 {
-				z01.PrintRune('1')
-				z01.PrintRune('2')
+			for _, r := range cards[deck[index]-1] {
+				z01.PrintRune(r)
 			}
+			index++
 			if j < 2 {
 				z01.PrintRune(',')
 				z01.PrintRune(' ')

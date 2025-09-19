@@ -3,10 +3,9 @@ package student
 import "github.com/01-edu/z01"
 
 func DealAPackOfCards(deck []int) {
-	if len(deck) != 52 {
-		return // ή μπορείς να εκτυπώσεις μήνυμα σφάλματος
+	if len(deck) != 12 {
+		return
 	}
-
 	for i := 0; i < 4; i++ {
 		printStr("Player ")
 		printNum(i + 1)

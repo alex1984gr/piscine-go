@@ -3,33 +3,43 @@ package student
 import "github.com/01-edu/z01"
 
 func DealAPackOfCards(deck []int) {
-	// Κάθε παίκτης τυπώνεται με Player 1:, Player 2:, κλπ.
 	for i := 0; i < 4; i++ {
-		z01.PrintRune('P')
-		z01.PrintRune('l')
-		z01.PrintRune('a')
-		z01.PrintRune('y')
-		z01.PrintRune('e')
-		z01.PrintRune('r')
-		z01.PrintRune(' ')
-		z01.PrintRune(rune(i + 1 + '0')) // αριθμός παίκτη
-		z01.PrintRune(':')
-		z01.PrintRune(' ')
+		printString("Player ")
+		printInt(i + 1)
+		printString(": ")
 
-		// 3 κάρτες ανά παίκτη
-		for j := 0; j < 3; j++ {
-			val := deck[i*3+j]
-			if val >= 10 {
-				z01.PrintRune(rune(1 + '0'))
-				z01.PrintRune(rune(val%10 + '0'))
-			} else {
-				z01.PrintRune(rune(val + '0'))
-			}
-			if j < 2 {
-				z01.PrintRune(',')
-				z01.PrintRune(' ')
+		for j := 0; j < 13; j++ {
+			index := i*13 + j
+			printInt(deck[index])
+			if j < 12 {
+				printString(", ")
 			}
 		}
 		z01.PrintRune('\n')
+	}
+}
+
+// Εκτυπώνει έναν ακέραιο αριθμό με z01.PrintRune
+func printInt(n int) {
+	if n == 0 {
+		z01.PrintRune('0')
+		return
+	}
+
+	digits := []rune{}
+	for n > 0 {
+		digits = append([]rune{rune(n%10 + '0')}, digits...)
+		n /= 10
+	}
+
+	for _, d := range digits {
+		z01.PrintRune(d)
+	}
+}
+
+// Εκτυπώνει string χαρακτήρα-χαρακτήρα
+func printString(s string) {
+	for _, ch := range s {
+		z01.PrintRune(ch)
 	}
 }

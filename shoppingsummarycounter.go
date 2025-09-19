@@ -1,21 +1,31 @@
 package student
 
-func ShoppingSummaryCounter(str string) map[string]int {
-	result := make(map[string]int)
-	word := ""
+import "github.com/01-edu/z01"
 
-	for i := 0; i < len(str); i++ {
-		if str[i] != ' ' {
-			word += string(str[i])
-		} else {
-			if word != "" {
-				result[word]++
-				word = ""
-			}
-		}
+func printStr(s string) {
+	for i := 0; i < len(s); i++ {
+		z01.PrintRune(rune(s[i]))
 	}
-	if word != "" {
-		result[word]++
+}
+
+func printNum(n int) {
+	if n == 0 {
+		z01.PrintRune('0')
+		return
 	}
-	return result
+
+	if n < 0 {
+		z01.PrintRune('-')
+		n = -n
+	}
+
+	var digits []rune
+	for n > 0 {
+		digits = append(digits, rune(n%10)+'0')
+		n /= 10
+	}
+
+	for i := len(digits) - 1; i >= 0; i-- {
+		z01.PrintRune(digits[i])
+	}
 }

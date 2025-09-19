@@ -1,42 +1,32 @@
 package student
 
-import "github.com/01-edu/z01"
-
 func LoafOfBread(str string) string {
-	if len(str) < 5 {
-		out := "Invalid Output\n"
-		for _, r := range out {
-			z01.PrintRune(r)
-		}
-		return out
-	}
-	result := ""
+	myStr := ""
 	word := ""
-	count := 0
-	skipNext := false
-	for _, ch := range str {
-		if ch == ' ' {
-			result += string(ch)
+	skip := false
+	for _, char := range str {
+		if skip {
+			skip = false
 			continue
 		}
-		if skipNext {
-			skipNext = false
+		if char == ' ' {
 			continue
 		}
-		word += string(ch)
-		count++
-		if count == 5 {
-			result += word
+		word += string(char)
+		if len(word) == 5 {
+			myStr += word + " "
 			word = ""
-			count = 0
-			skipNext = true
+			skip = true
 		}
 	}
-	result += word
-	result += "\n"
-	for _, r := range result {
-		z01.PrintRune(r)
+	if word != "" {
+		myStr += word
 	}
-
-	return result
+	if myStr == "" {
+		return "\n"
+	}
+	if myStr[len(myStr)-1] == ' ' {
+		myStr = myStr[:len(myStr)-1]
+	}
+	return myStr + "\n"
 }

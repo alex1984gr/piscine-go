@@ -11,7 +11,7 @@ func LoafOfBread(str string) string {
 	skipNext := false
 	for _, ch := range str {
 		if ch == ' ' {
-			continue
+			result += string(ch)
 		}
 		if skipNext {
 			skipNext = false

@@ -4,28 +4,16 @@ import "github.com/01-edu/z01"
 
 func LoafOfBread(str string) string {
 	if len(str) < 5 {
-		z01.PrintRune('I')
-		z01.PrintRune('n')
-		z01.PrintRune('v')
-		z01.PrintRune('a')
-		z01.PrintRune('l')
-		z01.PrintRune('i')
-		z01.PrintRune('d')
-		z01.PrintRune(' ')
-		z01.PrintRune('O')
-		z01.PrintRune('u')
-		z01.PrintRune('t')
-		z01.PrintRune('p')
-		z01.PrintRune('u')
-		z01.PrintRune('t')
-		z01.PrintRune('\n')
-		return "Invalid Output\n"
+		out := "Invalid Output\n"
+		for _, r := range out {
+			z01.PrintRune(r)
+		}
+		return out
 	}
-
 	result := ""
+	word := ""
 	count := 0
 	skipNext := false
-
 	for _, ch := range str {
 		if ch == ' ' {
 			result += string(ch)
@@ -35,16 +23,17 @@ func LoafOfBread(str string) string {
 			skipNext = false
 			continue
 		}
-		result += string(ch)
+		word += string(ch)
 		count++
 		if count == 5 {
+			result += word
+			word = ""
 			count = 0
 			skipNext = true
 		}
 	}
-
+	result += word
 	result += "\n"
-
 	for _, r := range result {
 		z01.PrintRune(r)
 	}

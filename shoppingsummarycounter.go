@@ -6,17 +6,18 @@ func ShoppingSummaryCounter(str string) map[string]int {
 
 	for _, r := range str {
 		if r == ' ' {
-			// μόνο αν υπάρχει λέξη, την μετράμε
+			// αν έχουμε σχηματίσει λέξη, την αποθηκεύουμε
 			if word != "" {
 				result[word]++
 				word = ""
 			}
 		} else {
+			// προσθέτουμε χαρακτήρα στη λέξη
 			word += string(r)
 		}
 	}
 
-	// τελευταία λέξη αν έχει μείνει
+	// καταχωρούμε και την τελευταία λέξη (αν υπάρχει)
 	if word != "" {
 		result[word]++
 	}

@@ -3,26 +3,24 @@ package student
 import "github.com/01-edu/z01"
 
 func DealAPackOfCards(deck []int) {
-	for player := 0; player < 4; player++ {
-		z01.PrintRune('P')
-		z01.PrintRune('l')
-		z01.PrintRune('a')
-		z01.PrintRune('y')
-		z01.PrintRune('e')
-		z01.PrintRune('r')
-		z01.PrintRune(' ')
-		z01.PrintRune(rune('1' + player))
-		z01.PrintRune(':')
-		z01.PrintRune(' ')
-		for card := 0; card < 3; card++ {
-			num := deck[player*3+card]
-			if num >= 10 {
-				z01.PrintRune(rune('0' + num/10))
-			}
-			z01.PrintRune(rune('0' + num%10))
-			if card < 2 {
+	players := []string{"Player 1: ", "Player 2: ", "Player 3: ", "Player 4: "}
+	cardChars := [][]rune{
+		{'1'}, {'2'}, {'3'}, {'4'}, {'5'}, {'6'},
+		{'7'}, {'8'}, {'9'}, {'1', '0'}, {'1', '1'}, {'1', '2'},
+	}
+
+	for i := 0; i < 4; i++ {
+		for _, r := range players[i] {
+			z01.PrintRune(r)
+		}
+		for j := 0; j < 3; j++ {
+			cardIndex := i*3 + j
+			if j > 0 {
 				z01.PrintRune(',')
 				z01.PrintRune(' ')
+			}
+			for _, r := range cardChars[deck[cardIndex]-1] {
+				z01.PrintRune(r)
 			}
 		}
 		z01.PrintRune('\n')

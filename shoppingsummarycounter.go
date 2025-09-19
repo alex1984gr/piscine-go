@@ -4,8 +4,9 @@ func ShoppingSummaryCounter(str string) map[string]int {
 	result := make(map[string]int)
 	word := ""
 
-	for i, r := range str {
+	for _, r := range str {
 		if r == ' ' {
+			// μόνο αν υπάρχει λέξη, την μετράμε
 			if word != "" {
 				result[word]++
 				word = ""
@@ -13,10 +14,12 @@ func ShoppingSummaryCounter(str string) map[string]int {
 		} else {
 			word += string(r)
 		}
-		// Αν είμαστε στο τέλος της συμβολοσειράς
-		if i == len(str)-1 && word != "" {
-			result[word]++
-		}
 	}
+
+	// τελευταία λέξη αν έχει μείνει
+	if word != "" {
+		result[word]++
+	}
+
 	return result
 }

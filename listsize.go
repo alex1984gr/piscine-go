@@ -1,6 +1,6 @@
 package student
 
-func ListSize(l *list) int {
+func ListSize(l *List) int {
 	count := 0
 	courrent := l.Head
 	for courrent != nil {

@@ -1,20 +1,12 @@
-package student 
+package student
 
-type NodeL struct{
-	Data interface
-	Next *NodeL
-}
-type List struct{
-	Head *NodeL
-	Tail *NodeL
-}
 func ListPushFront(l *List, data interface{}) {
-	newNode :=&Nodel{Data: data}
-	if l.Head == nil{
+	newNode := &NodeL{Data: data}
+	if l.Head == nil {
 		l.Head = newNode
 		l.Tail = newNode
-	}else {
+	} else {
 		newNode.Next = l.Head
-		l.Head =newNode
+		l.Head = newNode
 	}
-} 
+}

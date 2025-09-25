@@ -7,6 +7,7 @@ func ListForEach(l *List, f func(*NodeL)) {
 		current = current.Next
 	}
 }
+
 func Add2_node(node *NodeL) {
 	switch node.Data.(type) {
 	case int:
@@ -15,6 +16,7 @@ func Add2_node(node *NodeL) {
 		node.Data = node.Data.(string) + "2"
 	}
 }
+
 func Subtract3_node(node *NodeL) {
 	switch node.Data.(type) {
 	case int:

@@ -11,7 +11,7 @@ func BTreeInsertData(root *TreeNode, data string) *TreeNode {
 	}
 	current := root
 	for {
-		if Data < current.Data {
+		if data < current.Data {
 			if current.Left == nil {
 				current.Left = &TreeNode{Data: data, Parent: current}
 				break

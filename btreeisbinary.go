@@ -3,16 +3,17 @@ package student
 func BTreeIsBinary(root *TreeNode) bool {
 	return helper(root, "", "")
 }
-func helper(node *TreeNode, minValeu, maxValeu string) bool {
+
+func helper(node *TreeNode, minValue, maxValue string) bool {
 	if node == nil {
 		return true
 	}
-	if minValeu != "" && node.Data <= minValeu {
+	if minValue != "" && node.Data <= minValue {
 		return false
 	}
-	if maxValeu != "" && node.Data >= maxValeu {
+	if maxValue != "" && node.Data >= maxValue {
 		return false
 	}
-	return helper(node.Left, minValeu, node.Data) &&
-		helper(node.Right, node.Data, maxValeu)
+	return helper(node.Left, minValue, node.Data) &&
+		helper(node.Right, node.Data, maxValue)
 }

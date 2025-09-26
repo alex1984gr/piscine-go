@@ -13,5 +13,6 @@ func helper(node *TreeNode, minValeu, maxValeu string) bool {
 	if maxValeu != "" && node.Data >= maxValeu {
 		return false
 	}
-	return helper(node.Left, minValeu, node.Data) && helper(node.Right, node.Data, maxValeu)
+	return helper(node.Left, minValeu, node.Data) &&
+		helper(node.Right, node.Data, maxValeu)
 }

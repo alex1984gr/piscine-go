@@ -1,0 +1,25 @@
+package main
+
+func ReadInput () [] rune { // diabazei thn eisodo 
+	text := getInput()
+	return [rune(text)]
+}
+func tokenize(input []rune) [] string  {
+	tokens := []string {}
+	current := ""
+	for _, ch := range input {
+		if ch == '<' || ch == '>' || ch == '"' || ch == ' '{
+			if current != ""{
+				tokens = append(tokens, current)
+				current = ""
+			}
+			if ch  != ' '{
+				tokens = append(tokens, string(ch))
+			}
+			else {
+				current += string(ch)
+			}
+			
+		}
+	}
+}

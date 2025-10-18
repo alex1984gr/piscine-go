@@ -1,25 +1,125 @@
 package main
 
-func ReadInput () [] rune { // diabazei thn eisodo 
-	text := getInput()
-	return [rune(text)]
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
+// Διαβάζει όλο το input από αρχείο ή stdin
+func ReadInput() []rune {
+	scanner := bufio.NewScanner(os.Stdin)
+	text := ""
+	for scanner.Scan() {
+		text += scanner.Text() + " "
+	}
+	return []rune(text)
 }
-func tokenize(input []rune) [] string  {
-	tokens := []string {}
+
+// Σπάει το κείμενο σε tokens: <tags>, "quotes", words
+func tokenize(input []rune) []string {
+	tokens := []string{}
 	current := ""
+
 	for _, ch := range input {
-		if ch == '<' || ch == '>' || ch == '"' || ch == ' '{
-			if current != ""{
+		if ch == '<' || ch == '>' || ch == '"' || ch == ' ' {
+			if current != "" {
 				tokens = append(tokens, current)
 				current = ""
 			}
-			if ch  != ' '{
+			if ch != ' ' {
 				tokens = append(tokens, string(ch))
 			}
-			else {
-				current += string(ch)
-			}
-			
+		} else {
+			current += string(ch)
 		}
 	}
+
+	if current != "" {
+		tokens = append(tokens, current)
+	}
+
+	return tokens
+}
+
+// Κρατά tokens που είναι μετά από tags
+func filterAfterTag(tokens []string) []string {
+	result := []string{}
+	insideTag := false
+
+	for i, tok := range tokens {
+		if tok == ">" {
+			insideTag = true
+			continue
+		}
+		if tok == "<" && i+1 < len(tokens) && tokens[i+1] != "/" {
+			insideTag = false
+		}
+		if insideTag {
+			result = append(result, tok)
+		}
+	}
+	return result
+}
+
+// Παίρνει μόνο το περιεχόμενο μέσα στα εισαγωγικά
+func extractQuotes(tokens []string) []string {
+	result := []string{}
+	insideQuotes := false
+
+	for _, tok := range tokens {
+		if tok == `"` {
+			insideQuotes = !insideQuotes
+			continue
+		}
+		if insideQuotes {
+			result = append(result, tok)
+		}
+	}
+	return result
+}
+
+// Επιστρέφει true αν ένα γράμμα είναι φωνήεν
+func startsWithVowel(word string) bool {
+	if len(word) == 0 {
+		return false
+	}
+	vowels := "aeiouAEIOU"
+	return strings.ContainsRune(vowels, rune(word[0]))
+}
+
+// Φιλτράρει λέξεις που ξεκινούν με φωνήεν
+func filterVowelWords(words []string) []string {
+	result := []string{}
+	for _, word := range words {
+		if startsWithVowel(word) {
+			result = append(result, word)
+		}
+	}
+	return result
+}
+
+// Εκτυπώνει το τελικό αποτέλεσμα
+func printOutput(words []string) {
+	for _, w := range words {
+		fmt.Print(w, " ")
+	}
+	fmt.Println()
+}
+
+// -------------------
+// Pipeline main
+// -------------------
+func main() {
+	fmt.Println("Enter text:")
+	input := ReadInput()
+
+	tokens := tokenize(input)
+	afterTag := filterAfterTag(tokens)
+	quotes := extractQuotes(afterTag)
+	vowelWords := filterVowelWords(quotes)
+
+	fmt.Println("Words that start with vowels:")
+	printOutput(vowelWords)
 }
